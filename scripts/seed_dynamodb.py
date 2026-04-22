@@ -1,5 +1,7 @@
 import boto3
 import uuid
+import json
+import os
 
 # Initialize DynamoDB resource
 # Note: You must have AWS credentials configured locally to run this script.
@@ -43,36 +45,36 @@ def create_tables():
         print(f"Users table check: {e}")
 
 def seed_data():
-    """Seed the MusicCatalog table with some sample songs."""
+    """Seed the MusicCatalog table with music metadata."""
     table = dynamodb.Table('MusicCatalog')
     
+    # Default sample data
     songs = [
-        # HAPPY
         {'emotion': 'HAPPY', 'songName': 'Walking on Sunshine', 'genre': 'Pop', 's3Url': 's3://emotion-music-storage/happy/sunshine.mp3'},
-        {'emotion': 'HAPPY', 'songName': 'Happy', 'genre': 'Pop', 's3Url': 's3://emotion-music-storage/happy/happy.mp3'},
-        {'emotion': 'HAPPY', 'songName': 'Can\'t Stop the Feeling', 'genre': 'Dance', 's3Url': 's3://emotion-music-storage/happy/feeling.mp3'},
-        
-        # SAD
         {'emotion': 'SAD', 'songName': 'Someone Like You', 'genre': 'Soul', 's3Url': 's3://emotion-music-storage/sad/adele.mp3'},
-        {'emotion': 'SAD', 'songName': 'Rainy Night In Georgia', 'genre': 'Soul', 's3Url': 's3://emotion-music-storage/sad/rainy.mp3'},
-        {'emotion': 'SAD', 'songName': 'Fix You', 'genre': 'Alt Rock', 's3Url': 's3://emotion-music-storage/sad/fixyou.mp3'},
-        
-        # ANGRY
         {'emotion': 'ANGRY', 'songName': 'In the End', 'genre': 'Nu Metal', 's3Url': 's3://emotion-music-storage/angry/lp.mp3'},
-        {'emotion': 'ANGRY', 'songName': 'Killing In The Name', 'genre': 'Metal', 's3Url': 's3://emotion-music-storage/angry/ratm.mp3'},
-        {'emotion': 'ANGRY', 'songName': 'Smells Like Teen Spirit', 'genre': 'Grunge', 's3Url': 's3://emotion-music-storage/angry/nirvana.mp3'},
-        
-        # CALM
         {'emotion': 'CALM', 'songName': 'Weightless', 'genre': 'Ambient', 's3Url': 's3://emotion-music-storage/calm/marconi.mp3'},
-        {'emotion': 'CALM', 'songName': 'Clair de Lune', 'genre': 'Classical', 's3Url': 's3://emotion-music-storage/calm/debussy.mp3'},
-        {'emotion': 'CALM', 'songName': 'Ocean Waves', 'genre': 'Nature', 's3Url': 's3://emotion-music-storage/calm/ocean.mp3'},
     ]
+
+    # Try to load from our new metadata file if it exists
+    metadata_path = os.path.join(os.path.dirname(__file__), '../data/music_metadata.json')
+    if os.path.exists(metadata_path):
+        try:
+            with open(metadata_path, 'r') as f:
+                songs = json.load(f)
+            print(f"Loaded {len(songs)} tracks from {metadata_path}")
+        except Exception as e:
+            print(f"Error loading metadata JSON: {e}")
 
     print("Seeding music data...")
     with table.batch_writer() as batch:
         for song in songs:
-            song['songId'] = str(uuid.uuid4())
-            batch.put_item(Item=song)
+            # Ensure songId is present
+            if 'songId' not in song:
+                song['songId'] = str(uuid.uuid4())
+            # Clean up keys not needed in DynamoDB (like filename)
+            item = {k: v for k, v in song.items() if k != 'filename'}
+            batch.put_item(Item=item)
     print("Seeding completed.")
 
 if __name__ == "__main__":

@@ -1,0 +1,322 @@
+[
+  {
+    "emotion": "HAPPY",
+    "songName": "Happy Sunshine",
+    "genre": "Pop",
+    "filename": "happy_1.mp3",
+    "s3Url": "s3://emotion-music-storage/happy/happy_1.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+  },
+  {
+    "emotion": "SAD",
+    "songName": "Sad Rain",
+    "genre": "Piano",
+    "filename": "sad_1.mp3",
+    "s3Url": "s3://emotion-music-storage/sad/sad_1.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+  },
+  {
+    "emotion": "ANGRY",
+    "songName": "Angry Thunder",
+    "genre": "Rock",
+    "filename": "angry_1.mp3",
+    "s3Url": "s3://emotion-music-storage/angry/angry_1.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+  },
+  {
+    "emotion": "CALM",
+    "songName": "Calm Ocean",
+    "genre": "Ambient",
+    "filename": "calm_1.mp3",
+    "s3Url": "s3://emotion-music-storage/calm/calm_1.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
+  },
+  {
+    "emotion": "HAPPY",
+    "songName": "Happy Rainbow",
+    "genre": "Upbeat",
+    "filename": "happy_2.mp3",
+    "s3Url": "s3://emotion-music-storage/happy/happy_2.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"
+  },
+  {
+    "emotion": "SAD",
+    "songName": "Sad Tears",
+    "genre": "Classical",
+    "filename": "sad_2.mp3",
+    "s3Url": "s3://emotion-music-storage/sad/sad_2.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"
+  },
+  {
+    "emotion": "ANGRY",
+    "songName": "Angry Fire",
+    "genre": "Metal",
+    "filename": "angry_2.mp3",
+    "s3Url": "s3://emotion-music-storage/angry/angry_2.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3"
+  },
+  {
+    "emotion": "CALM",
+    "songName": "Calm Mountain",
+    "genre": "Nature",
+    "filename": "calm_2.mp3",
+    "s3Url": "s3://emotion-music-storage/calm/calm_2.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
+  },
+  {
+    "emotion": "HAPPY",
+    "songName": "Happy Glow",
+    "genre": "Synthwave",
+    "filename": "happy_3.mp3",
+    "s3Url": "s3://emotion-music-storage/happy/happy_3.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"
+  },
+  {
+    "emotion": "SAD",
+    "songName": "Sad Shadow",
+    "genre": "Ambient",
+    "filename": "sad_3.mp3",
+    "s3Url": "s3://emotion-music-storage/sad/sad_3.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3"
+  },
+  {
+    "emotion": "ANGRY",
+    "songName": "Angry Storm",
+    "genre": "Industrial",
+    "filename": "angry_3.mp3",
+    "s3Url": "s3://emotion-music-storage/angry/angry_3.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3"
+  },
+  {
+    "emotion": "CALM",
+    "songName": "Calm Forest",
+    "genre": "Zen",
+    "filename": "calm_3.mp3",
+    "s3Url": "s3://emotion-music-storage/calm/calm_3.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3"
+  },
+  {
+    "emotion": "HAPPY",
+    "songName": "Happy Spark",
+    "genre": "Disco",
+    "filename": "happy_4.mp3",
+    "s3Url": "s3://emotion-music-storage/happy/happy_4.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3"
+  },
+  {
+    "emotion": "SAD",
+    "songName": "Sad Echo",
+    "genre": "Blues",
+    "filename": "sad_4.mp3",
+    "s3Url": "s3://emotion-music-storage/sad/sad_4.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3"
+  },
+  {
+    "emotion": "ANGRY",
+    "songName": "Angry Rage",
+    "genre": "Punk",
+    "filename": "angry_4.mp3",
+    "s3Url": "s3://emotion-music-storage/angry/angry_4.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3"
+  },
+  {
+    "emotion": "CALM",
+    "songName": "Calm Breeze",
+    "genre": "Chillout",
+    "filename": "calm_4.mp3",
+    "s3Url": "s3://emotion-music-storage/calm/calm_4.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3"
+  },
+  {
+    "emotion": "HAPPY",
+    "songName": "Happy Joy",
+    "genre": "Funk",
+    "filename": "happy_5.mp3",
+    "s3Url": "s3://emotion-music-storage/happy/happy_5.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3"
+  },
+  {
+    "emotion": "SAD",
+    "songName": "Sad Mist",
+    "genre": "Melancholy",
+    "filename": "sad_5.mp3",
+    "s3Url": "s3://emotion-music-storage/sad/sad_5.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-18.mp3"
+  },
+  {
+    "emotion": "ANGRY",
+    "songName": "Angry Clash",
+    "genre": "Nu Metal",
+    "filename": "angry_5.mp3",
+    "s3Url": "s3://emotion-music-storage/angry/angry_5.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-19.mp3"
+  },
+  {
+    "emotion": "CALM",
+    "songName": "Calm Silent",
+    "genre": "Meditation",
+    "filename": "calm_5.mp3",
+    "s3Url": "s3://emotion-music-storage/calm/calm_5.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-20.mp3"
+  },
+  {
+    "emotion": "HAPPY",
+    "songName": "Happy Pulse",
+    "genre": "Dance",
+    "filename": "happy_6.mp3",
+    "s3Url": "s3://emotion-music-storage/happy/happy_6.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-21.mp3"
+  },
+  {
+    "emotion": "SAD",
+    "songName": "Sad Hollow",
+    "genre": "Acoustic",
+    "filename": "sad_6.mp3",
+    "s3Url": "s3://emotion-music-storage/sad/sad_6.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-22.mp3"
+  },
+  {
+    "emotion": "ANGRY",
+    "songName": "Angry Strike",
+    "genre": "Hardcore",
+    "filename": "angry_6.mp3",
+    "s3Url": "s3://emotion-music-storage/angry/angry_6.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-23.mp3"
+  },
+  {
+    "emotion": "CALM",
+    "songName": "Calm Peace",
+    "genre": "Space",
+    "filename": "calm_6.mp3",
+    "s3Url": "s3://emotion-music-storage/calm/calm_6.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-24.mp3"
+  },
+  {
+    "emotion": "HAPPY",
+    "songName": "Happy Bliss",
+    "genre": "Reggae",
+    "filename": "happy_7.mp3",
+    "s3Url": "s3://emotion-music-storage/happy/happy_7.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-25.mp3"
+  },
+  {
+    "emotion": "SAD",
+    "songName": "Sad Faded",
+    "genre": "Lofi",
+    "filename": "sad_7.mp3",
+    "s3Url": "s3://emotion-music-storage/sad/sad_7.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-26.mp3"
+  },
+  {
+    "emotion": "ANGRY",
+    "songName": "Angry Fury",
+    "genre": "Grunge",
+    "filename": "angry_7.mp3",
+    "s3Url": "s3://emotion-music-storage/angry/angry_7.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-27.mp3"
+  },
+  {
+    "emotion": "CALM",
+    "songName": "Calm Eon",
+    "genre": "Ethereal",
+    "filename": "calm_7.mp3",
+    "s3Url": "s3://emotion-music-storage/calm/calm_7.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-28.mp3"
+  },
+  {
+    "emotion": "HAPPY",
+    "songName": "Happy Vibe",
+    "genre": "Electropop",
+    "filename": "happy_8.mp3",
+    "s3Url": "s3://emotion-music-storage/happy/happy_8.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-29.mp3"
+  },
+  {
+    "emotion": "SAD",
+    "songName": "Sad Solace",
+    "genre": "Minimal",
+    "filename": "sad_8.mp3",
+    "s3Url": "s3://emotion-music-storage/sad/sad_8.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-30.mp3"
+  },
+  {
+    "emotion": "ANGRY",
+    "songName": "Angry Blaze",
+    "genre": "Alternative",
+    "filename": "angry_8.mp3",
+    "s3Url": "s3://emotion-music-storage/angry/angry_8.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-31.mp3"
+  },
+  {
+    "emotion": "CALM",
+    "songName": "Calm Still",
+    "genre": "Soft",
+    "filename": "calm_8.mp3",
+    "s3Url": "s3://emotion-music-storage/calm/calm_8.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-32.mp3"
+  },
+  {
+    "emotion": "HAPPY",
+    "songName": "Happy Energy",
+    "genre": "Jazzy",
+    "filename": "happy_9.mp3",
+    "s3Url": "s3://emotion-music-storage/happy/happy_9.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-33.mp3"
+  },
+  {
+    "emotion": "SAD",
+    "songName": "Sad Grief",
+    "genre": "Cinematic",
+    "filename": "sad_9.mp3",
+    "s3Url": "s3://emotion-music-storage/sad/sad_9.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-34.mp3"
+  },
+  {
+    "emotion": "ANGRY",
+    "songName": "Angry Voltage",
+    "genre": "Thrash",
+    "filename": "angry_9.mp3",
+    "s3Url": "s3://emotion-music-storage/angry/angry_9.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-35.mp3"
+  },
+  {
+    "emotion": "CALM",
+    "songName": "Calm Quiet",
+    "genre": "Dreamy",
+    "filename": "calm_9.mp3",
+    "s3Url": "s3://emotion-music-storage/calm/calm_9.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-36.mp3"
+  },
+  {
+    "emotion": "HAPPY",
+    "songName": "Happy Radiance",
+    "genre": "Soul",
+    "filename": "happy_10.mp3",
+    "s3Url": "s3://emotion-music-storage/happy/happy_10.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-37.mp3"
+  },
+  {
+    "emotion": "SAD",
+    "songName": "Sad Drift",
+    "genre": "Downtempo",
+    "filename": "sad_10.mp3",
+    "s3Url": "s3://emotion-music-storage/sad/sad_10.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-38.mp3"
+  },
+  {
+    "emotion": "ANGRY",
+    "songName": "Angry Chaos",
+    "genre": "Heavy Metal",
+    "filename": "angry_10.mp3",
+    "s3Url": "s3://emotion-music-storage/angry/angry_10.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-39.mp3"
+  },
+  {
+    "emotion": "CALM",
+    "songName": "Calm Zenith",
+    "genre": "Lounge",
+    "filename": "calm_10.mp3",
+    "s3Url": "s3://emotion-music-storage/calm/calm_10.mp3",
+    "downloadUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-40.mp3"
+  }
+]
