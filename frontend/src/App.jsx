@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './App.css';
+// import './App.css';
 
-const API_ENDPOINT = 'YOUR_API_GATEWAY_URL'; // To be replaced by the user
+const API_ENDPOINT = 'https://jj20t803kh.execute-api.ap-south-1.amazonaws.com/prod/analyze';
 
 function App() {
   const [moodText, setMoodText] = useState('');

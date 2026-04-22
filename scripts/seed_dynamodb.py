@@ -5,7 +5,7 @@ import os
 
 # Initialize DynamoDB resource
 # Note: You must have AWS credentials configured locally to run this script.
-dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+dynamodb = boto3.resource('dynamodb', region_name='ap-south-1')
 
 def create_tables():
     """Create the DynamoDB tables if they don't exist."""
@@ -72,13 +72,21 @@ def seed_data():
             # Ensure songId is present
             if 'songId' not in song:
                 song['songId'] = str(uuid.uuid4())
-            # Clean up keys not needed in DynamoDB (like filename)
-            item = {k: v for k, v in song.items() if k != 'filename'}
+            
+            # Ensure s3Key is present and formatted according to user manual: music/<emotion>/<file>
+            # Example: "s3Key": "music/angry/angry_1.mp3"
+            if 's3Url' in song and 's3Key' not in song:
+                # Basic transform: s3://emotion-music-storage/happy/happy_1.mp3 -> music/happy/happy_1.mp3
+                s3_path = song['s3Url'].replace('s3://emotion-music-storage/', '')
+                song['s3Key'] = f"music/{s3_path}"
+            
+            # Clean up keys not needed in DynamoDB (like filename and downloadUrl)
+            item = {k: v for k, v in song.items() if k not in ['filename', 'downloadUrl']}
             batch.put_item(Item=item)
     print("Seeding completed.")
 
 if __name__ == "__main__":
     # In a real scenario, the user would run this after configuring AWS CLI
     print("Warning: Ensure you have AWS credentials set up before running this script.")
-    # create_tables()
-    # seed_data()
+    create_tables()
+    seed_data()
