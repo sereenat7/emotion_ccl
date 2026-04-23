@@ -4,6 +4,7 @@ import base64
 import os
 import uuid
 from botocore.exceptions import ClientError
+from boto3.dynamodb.conditions import Key
 
 # Initialize AWS clients
 comprehend = boto3.client('comprehend')
@@ -79,7 +80,7 @@ def get_recommendations(emotion):
     table = dynamodb.Table(MUSIC_TABLE)
     try:
         response = table.query(
-            KeyConditionExpression=boto3.dynamodb.conditions.Key('emotion').eq(emotion),
+            KeyConditionExpression=Key('emotion').eq(emotion),
             Limit=5
         )
         songs = response.get('Items', [])
@@ -127,17 +128,18 @@ def lambda_handler(event, context):
         # Get songs
         songs = get_recommendations(detected_emotion)
 
-        # Save to history (Optional feature)
-        # try:
-        #     user_table = dynamodb.Table(USERS_TABLE)
-        #     user_table.put_item(Item={
-        #         'userId': user_id,
-        #         'timestamp': str(uuid.uuid4()), # simplified for demo
-        #         'emotion': detected_emotion,
-        #         'songs': [s['songName'] for s in songs]
-        #     })
-        # except Exception as e:
-        #     print(f"History logging failed: {e}")
+        # Save to history
+        try:
+            user_table = dynamodb.Table(USERS_TABLE)
+            # We use a combined key or just update the user's current session
+            user_table.put_item(Item={
+                'userId': user_id,
+                'lastDetected': detected_emotion,
+                'lastUpdate': str(uuid.uuid4()), # simplified for demo
+                'history': [s['songName'] for s in songs]
+            })
+        except Exception as e:
+            print(f"History logging failed: {e}")
 
         return {
             'statusCode': 200,

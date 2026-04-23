@@ -1,0 +1,28 @@
+# MacOS files
+.DS_Store
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.eslintcache
+
+# Backend (Python)
+backend/__pycache__/
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+venv/
+.venv/
+env/
+.env
+
+# Large Assets / Data
+music/
+data/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo

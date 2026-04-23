@@ -9,6 +9,15 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [currentSong, setCurrentSong] = useState(null);
+  const [history, setHistory] = useState([]);
+
+  // Dynamic Theme Effect
+  React.useEffect(() => {
+    if (result?.emotion) {
+      document.body.className = `theme-${result.emotion}`;
+    }
+  }, [result]);
+
 
   const handleUpload = (e) => {
     const file = e.target.files[0];
@@ -40,6 +49,11 @@ function App() {
       
       const data = await response.json();
       setResult(data);
+      // Update history locally
+      setHistory(prev => [
+        { emotion: data.emotion, time: new Date().toLocaleTimeString() },
+        ...prev
+      ].slice(0, 5));
     } catch (error) {
       console.error('Error:', error);
       alert('Failed to analyze emotion. Ensure API Gateway is set up.');
@@ -49,13 +63,16 @@ function App() {
   };
 
   return (
-    <div className="app-container">
-      <header>
-        <h1>VibeCheck</h1>
-        <p className="subtitle">Emotion-Based Music Recommendations</p>
-      </header>
+    <div className="app-wrapper">
+      <div className="sphere sphere-1"></div>
+      <div className="sphere sphere-2"></div>
+      <div className="app-container">
+        <header>
+          <h1>VibeCheck</h1>
+          <p className="subtitle">Premium Emotion-Based Music</p>
+        </header>
 
-      <div className="main-grid">
+        <div className="main-grid">
         <div className="input-section">
           <div className="glass-card">
             <label>How are you feeling?</label>
@@ -101,27 +118,34 @@ function App() {
             <label>Recommendations</label>
             
             {result ? (
-              <>
-                <div style={{marginBottom: '1.5rem'}}>
-                  <span className="emotion-badge">{result.emotion}</span>
+              result.songs && result.songs.length > 0 ? (
+                <>
+                  <div style={{marginBottom: '1.5rem'}}>
+                    <span className="emotion-badge">{result.emotion}</span>
+                  </div>
+                  <ul className="song-list">
+                    {result.songs.map((song, index) => (
+                      <li key={index} className="song-item">
+                        <div className="song-info">
+                          <h4>{song.songName}</h4>
+                          <p>{song.genre}</p>
+                        </div>
+                        <button 
+                          className="play-btn"
+                          onClick={() => setCurrentSong(song)}
+                        >
+                          ▶
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <div style={{textAlign: 'center', color: 'var(--text-muted)', marginTop: '4rem'}}>
+                  <p>No songs found for <strong>{result.emotion}</strong> vibe.</p>
+                  <p style={{fontSize: '0.8rem', marginTop: '1rem'}}>Try a different mood!</p>
                 </div>
-                <ul className="song-list">
-                  {result.songs.map((song, index) => (
-                    <li key={index} className="song-item">
-                      <div className="song-info">
-                        <h4>{song.songName}</h4>
-                        <p>{song.genre}</p>
-                      </div>
-                      <button 
-                        className="play-btn"
-                        onClick={() => setCurrentSong(song)}
-                      >
-                        ▶
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </>
+              )
             ) : (
               <div style={{textAlign: 'center', color: 'var(--text-muted)', marginTop: '4rem'}}>
                 Analysis results will appear here
@@ -130,6 +154,7 @@ function App() {
           </div>
         </div>
       </div>
+
 
       {currentSong && (
         <div className="player-footer">
@@ -142,6 +167,20 @@ function App() {
           </audio>
         </div>
       )}
+
+      {history.length > 0 && (
+        <div className="recent-vibes-section">
+          <label>Recent Vibes</label>
+          <div className="recent-vibes">
+            {history.map((item, i) => (
+              <div key={i} className="vibe-card">
+                <strong>{item.emotion}</strong> <span>{item.time}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      </div>
     </div>
   );
 }
