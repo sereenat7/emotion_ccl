@@ -6,6 +6,8 @@ import uuid
 from botocore.exceptions import ClientError
 from boto3.dynamodb.conditions import Key
 
+# Minor change for commit demonstration
+
 # Initialize AWS clients
 comprehend = boto3.client('comprehend')
 rekognition = boto3.client('rekognition')

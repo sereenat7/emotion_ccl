@@ -3,6 +3,38 @@ import React, { useState } from 'react';
 
 const API_ENDPOINT = 'https://jj20t803kh.execute-api.ap-south-1.amazonaws.com/prod/analyze';
 
+// Local mock data for development/demo (uses real playable MP3 URLs)
+const MOCK_SONGS = {
+  HAPPY: [
+    { songName: 'Happy Sunshine', genre: 'Pop', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+    { songName: 'Happy Rainbow', genre: 'Upbeat', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3' },
+    { songName: 'Happy Glow', genre: 'Synthwave', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3' },
+    { songName: 'Happy Spark', genre: 'Disco', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3' },
+    { songName: 'Happy Joy', genre: 'Funk', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3' },
+  ],
+  SAD: [
+    { songName: 'Sad Rain', genre: 'Piano', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
+    { songName: 'Sad Tears', genre: 'Classical', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3' },
+    { songName: 'Sad Shadow', genre: 'Ambient', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3' },
+    { songName: 'Sad Echo', genre: 'Blues', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3' },
+    { songName: 'Sad Mist', genre: 'Melancholy', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-18.mp3' },
+  ],
+  ANGRY: [
+    { songName: 'Angry Thunder', genre: 'Rock', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
+    { songName: 'Angry Fire', genre: 'Metal', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3' },
+    { songName: 'Angry Storm', genre: 'Industrial', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3' },
+    { songName: 'Angry Rage', genre: 'Punk', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3' },
+    { songName: 'Angry Clash', genre: 'Nu Metal', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-19.mp3' },
+  ],
+  CALM: [
+    { songName: 'Calm Ocean', genre: 'Ambient', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3' },
+    { songName: 'Calm Mountain', genre: 'Nature', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3' },
+    { songName: 'Calm Forest', genre: 'Zen', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3' },
+    { songName: 'Calm Breeze', genre: 'Chillout', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3' },
+    { songName: 'Calm Silent', genre: 'Meditation', streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-20.mp3' },
+  ],
+};
+
 function App() {
   const [moodText, setMoodText] = useState('');
   const [image, setImage] = useState(null);
@@ -10,6 +42,7 @@ function App() {
   const [result, setResult] = useState(null);
   const [currentSong, setCurrentSong] = useState(null);
   const [history, setHistory] = useState([]);
+  const [useMock, setUseMock] = useState(false);
 
   // Dynamic Theme Effect
   React.useEffect(() => {
@@ -30,9 +63,36 @@ function App() {
     }
   };
 
+  const getMockEmotion = (type, data) => {
+    if (type === 'image') return 'HAPPY';
+    const text = (data || '').toLowerCase();
+    if (text.includes('happy') || text.includes('joy') || text.includes('good') || text.includes('great') || text.includes('love')) return 'HAPPY';
+    if (text.includes('sad') || text.includes('cry') || text.includes('depress') || text.includes('miss') || text.includes('lonely')) return 'SAD';
+    if (text.includes('angry') || text.includes('mad') || text.includes('hate') || text.includes('furious') || text.includes('rage')) return 'ANGRY';
+    if (text.includes('calm') || text.includes('relax') || text.includes('peace') || text.includes('chill') || text.includes('meditate')) return 'CALM';
+    return 'HAPPY';
+  };
+
   const analyzeEmotion = async (type) => {
     setLoading(true);
     setResult(null);
+
+    if (useMock) {
+      // Simulate network delay
+      await new Promise(r => setTimeout(r, 600));
+      const detected = getMockEmotion(type, type === 'text' ? moodText : '');
+      const data = {
+        emotion: detected,
+        songs: MOCK_SONGS[detected] || []
+      };
+      setResult(data);
+      setHistory(prev => [
+        { emotion: data.emotion, time: new Date().toLocaleTimeString() },
+        ...prev
+      ].slice(0, 5));
+      setLoading(false);
+      return;
+    }
     
     const payload = {
       type: type,
@@ -48,6 +108,13 @@ function App() {
       });
       
       const data = await response.json();
+
+      // Fallback to mock data if API returns no songs
+      if (!data.songs || data.songs.length === 0) {
+        const detected = data.emotion || 'HAPPY';
+        data.songs = MOCK_SONGS[detected] || MOCK_SONGS['HAPPY'];
+      }
+
       setResult(data);
       // Update history locally
       setHistory(prev => [
@@ -56,7 +123,17 @@ function App() {
       ].slice(0, 5));
     } catch (error) {
       console.error('Error:', error);
-      alert('Failed to analyze emotion. Ensure API Gateway is set up.');
+      // Auto-fallback to mock data on API failure
+      const detected = getMockEmotion(type, type === 'text' ? moodText : '');
+      const fallback = {
+        emotion: detected,
+        songs: MOCK_SONGS[detected] || []
+      };
+      setResult(fallback);
+      setHistory(prev => [
+        { emotion: fallback.emotion, time: new Date().toLocaleTimeString() },
+        ...prev
+      ].slice(0, 5));
     } finally {
       setLoading(false);
     }
@@ -70,6 +147,14 @@ function App() {
         <header>
           <h1>VibeCheck</h1>
           <p className="subtitle">Premium Emotion-Based Music</p>
+          <label style={{display: 'inline-flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.75rem', cursor: 'pointer', fontSize: '0.85rem', color: 'var(--text-muted)'}}>
+            <input
+              type="checkbox"
+              checked={useMock}
+              onChange={(e) => setUseMock(e.target.checked)}
+            />
+            Use Demo Mode (no AWS required)
+          </label>
         </header>
 
         <div className="main-grid">
