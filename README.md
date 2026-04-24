@@ -125,23 +125,6 @@ Visit `http://localhost:5173` 🎉
 
 ---
 
-## 🎨 UI Preview
-
-The application features a **glassmorphism design** with:
-- Dynamic color themes based on detected emotion
-- Animated gradient spheres in background
-- Smooth hover effects and transitions
-- Responsive grid layout
-
-| Emotion | Theme Color |
-|---------|-------------|
-| Happy | 🟡 Warm Yellow |
-| Sad | 🔵 Deep Blue |
-| Angry | 🔴 Intense Red |
-| Calm | 🟢 Soft Green |
-
----
-
 ## 🔌 API Reference
 
 ### `POST /analyze`
@@ -219,11 +202,3 @@ Detects emotion and returns music recommendations.
 
 
 ```
-
----
-
-## 🙏 Acknowledgments
-
-- Demo music tracks powered by [SoundHelix](https://www.soundhelix.com)
-- AWS Free Tier for cloud infrastructure
-- React & Vite communities for exce
